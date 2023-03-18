@@ -177,7 +177,7 @@ updates:
 
   puts "","Read the following config from '#{repo_name}':\n",configcontent,""
 
-  config = Dependabot::Config::File.parse(configccontent)
+  config = Dependabot::Config::File.parse(configcontent)
   config = config.update_config(
     package_manager,
     directory: directory,
