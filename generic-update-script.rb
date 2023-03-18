@@ -158,15 +158,26 @@ end
 # Fetch the configuration file #
 ################################
 if use_config
-  config = Dependabot::Config::FileFetcher.new(
-    source: source,
-    credentials: credentials,
-    options: options,
-  ).config_file
+  # config = Dependabot::Config::FileFetcher.new(
+  #   source: source,
+  #   credentials: credentials,
+  #   options: options,
+  # ).config_file
 
-  puts "","Read the following config from '#{repo_name}':\n",config.content,""
+  configcontent = "version: 2
+updates:
+  - package-ecosystem: \"docker\"
+    ignore:
+      - dependency-name: \"mcr.microsoft.com/dotnet/aspnet\"
+        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\"]
+      - dependency-name: \"dotnet/aspnet\"
+        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\"]
+      - dependency-name: \"aspnet\"
+        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\"]";
 
-  config = Dependabot::Config::File.parse(config.content)
+  puts "","Read the following config from '#{repo_name}':\n",configcontent,""
+
+  config = Dependabot::Config::File.parse(configccontent)
   config = config.update_config(
     package_manager,
     directory: directory,
