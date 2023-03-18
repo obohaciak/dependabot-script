@@ -173,7 +173,7 @@ updates:
       - dependency-name: \"dotnet/aspnet\"
         versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]
       - dependency-name: \"aspnet\"
-        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"];
+        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]";
 
   puts "","Read the following config from '#{repo_name}':\n",configcontent,""
 
