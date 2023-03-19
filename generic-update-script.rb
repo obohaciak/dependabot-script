@@ -157,34 +157,34 @@ end
 ################################
 # Fetch the configuration file #
 ################################
-if use_config
-  # config = Dependabot::Config::FileFetcher.new(
-  #   source: source,
-  #   credentials: credentials,
-  #   options: options,
-  # ).config_file
+# if use_config
+#   # config = Dependabot::Config::FileFetcher.new(
+#   #   source: source,
+#   #   credentials: credentials,
+#   #   options: options,
+#   # ).config_file
 
-  configcontent = "version: 2
-updates:
-  - package-ecosystem: \"docker\"
-    ignore:
-      - dependency-name: \"mcr.microsoft.com/dotnet/aspnet\"
-        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]
-      - dependency-name: \"dotnet/aspnet\"
-        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]
-      - dependency-name: \"aspnet\"
-        versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]";
+#   configcontent = "version: 2
+# updates:
+#   - package-ecosystem: \"docker\"
+#     ignore:
+#       - dependency-name: \"mcr.microsoft.com/dotnet/aspnet\"
+#         versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]
+#       - dependency-name: \"dotnet/aspnet\"
+#         versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]
+#       - dependency-name: \"aspnet\"
+#         versions: [\">=7\", \">=7.0\", \">=7.0.1\", \">=7.x.x\", \"7\", \"7.0\", \"7.0.1\", \"7.x.x\"]";
 
-  puts "","Read the following config from '#{repo_name}':\n",configcontent,""
+#   puts "","Read the following config from '#{repo_name}':\n",configcontent,""
 
-  config = Dependabot::Config::File.parse(configcontent)
-  config = config.update_config(
-    package_manager,
-    directory: directory,
-  )
-else
-  config = nil
-end
+#   config = Dependabot::Config::File.parse(configcontent)
+#   config = config.update_config(
+#     package_manager,
+#     directory: directory,
+#   )
+# else
+#   config = nil
+# end
 
 ##############################
 # Fetch the dependency files #
@@ -220,7 +220,8 @@ dependencies.select(&:top_level?).each do |dep|
     dependency: dep,
     dependency_files: files,
     credentials: credentials,
-    ignored_versions: config ? config.ignored_versions_for(dep) : [],
+    #ignored_versions: config ? config.ignored_versions_for(dep) : [],
+    ignored_versions: [ "> 6.0.15", ">= 6.0.16", ">= 7.0", ">= 7.0.1" ],
     options: options,
   )
 
